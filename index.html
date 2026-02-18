@@ -3,162 +3,374 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cumpleaños Especiales</title>
+    <title>🎂 Cumpleaños del Equipo</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Poppins', 'Arial', sans-serif;
-            background: linear-gradient(to bottom, #16222a, #3a6073);
-            color: #ecf0f1;
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
             min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            background-attachment: fixed;
+            padding: 40px 20px;
         }
 
         h1 {
-            font-size: 3em;
-            margin: 20px 0;
             text-align: center;
-            color: #f39c12;
-            text-transform: uppercase;
+            font-size: 3em;
+            color: #fff;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            margin-bottom: 10px;
+            animation: float 3s ease-in-out infinite;
         }
 
-        .today, .next-birthday {
-            font-size: 1.5em;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 10px;
-            background: #f1c40f;
-            color: #2c3e50;
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .status-badge {
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
             font-weight: 600;
-            text-align: center;
-            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            display: none;
+            animation: pulse 2s infinite;
+        }
+
+        .today-badge {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: #fff;
+            box-shadow: 0 5px 30px rgba(255, 107, 107, 0.5);
+        }
+
+        .next-badge {
+            background: linear-gradient(45deg, #48dbfb, #0abde3);
+            color: #fff;
+            box-shadow: 0 5px 30px rgba(72, 219, 251, 0.5);
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            text-align: center;
-            width: 90%;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .card {
-            background-color: #34495e;
-            border-radius: 10px;
-            padding: 20px;
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2, #f093fb);
         }
 
         .card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        .card.today {
+            background: linear-gradient(135deg, #fff5f5, #ffe8e8);
+            border: 3px solid #ff6b6b;
+            animation: celebrate 1s ease-in-out infinite;
+        }
+
+        .card.today::before {
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #ff6b6b);
+            height: 8px;
+        }
+
+        @keyframes celebrate {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(255, 107, 107, 0.8); }
+        }
+
+        .card.next {
+            background: linear-gradient(135deg, #f0ffff, #e8f8ff);
+            border: 3px solid #48dbfb;
+        }
+
+        .card.next::before {
+            background: linear-gradient(90deg, #48dbfb, #0abde3);
+        }
+
+        .emoji {
+            font-size: 3em;
+            margin-bottom: 10px;
         }
 
         .card h2 {
-            font-size: 1.8em;
-            margin-bottom: 5px;
-            color: #1abc9c;
+            font-size: 1.6em;
+            color: #2d3436;
+            margin-bottom: 8px;
         }
 
-        .card p {
-            margin: 5px 0;
-            font-size: 1.1em;
-            color: #ecf0f1;
+        .card .date {
+            font-size: 1.2em;
+            color: #6c5ce7;
+            font-weight: 600;
+            margin-bottom: 12px;
         }
 
-        .card span {
-            display: block;
-            margin-top: 8px;
+        .card .message {
+            font-size: 0.95em;
+            color: #636e72;
             font-style: italic;
-            color: #f39c12;
+            line-height: 1.4;
+        }
+
+        .card.today .tag,
+        .card.next .tag {
+            position: absolute;
+            top: 15px;
+            right: -35px;
+            padding: 5px 40px;
+            font-size: 0.75em;
+            font-weight: 700;
+            transform: rotate(45deg);
+            color: #fff;
+        }
+
+        .card.today .tag {
+            background: #ff6b6b;
+        }
+
+        .card.next .tag {
+            background: #48dbfb;
+        }
+
+        audio {
+            display: none;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            color: rgba(255,255,255,0.7);
             font-size: 0.9em;
-        }
-
-        @keyframes glow {
-            from {
-                box-shadow: 0 0 5px #f39c12;
-            }
-            to {
-                box-shadow: 0 0 20px #f39c12;
-            }
-        }
-
-        .highlight {
-            border: 2px solid #f1c40f;
-            animation: glow 1.5s ease-in-out infinite alternate;
         }
     </style>
 </head>
 <body>
-    <h1>🎉 Cumpleaños 🎉</h1>
-    <div class="today" id="today-birthday" style="display: none;">🎂 Hoy es el cumpleaños de: <strong></strong> 🎉</div>
-    <div class="next-birthday" id="next-birthday" style="display: none;">🎈 El próximo cumpleaños es de: <strong></strong> 🎁</div>
+    <h1>🎉 Cumpleaños del Equipo 🎉</h1>
 
-    <div class="container" id="birthday-container">
-        <!-- Cumpleaños con mensajes añadidos -->
+    <div class="status-bar">
+        <div class="status-badge today-badge" id="today-badge">🎂 ¡Hoy celebramos a <span id="today-name"></span>!</div>
+        <div class="status-badge next-badge" id="next-badge">🎈 Próximo: <span id="next-name"></span></div>
+    </div>
+
+    <div class="container" id="container">
+        <!-- Enero -->
         <div class="card" data-date="01-21">
+            <div class="emoji">🌟</div>
             <h2>Estefanía</h2>
-            <p>21 de Enero</p>
-            <span>✨ Siempre alegre y con buena energía ✨</span>
+            <div class="date">21 de Enero</div>
+            <div class="message">Siempre alegre y con la mejor energía del equipo</div>
         </div>
         <div class="card" data-date="01-25">
+            <div class="emoji">🎷</div>
             <h2>Alfred</h2>
-            <p>25 de Enero</p>
-            <span>🍀 Un amante del arte y la tranquilidad 🍀</span>
+            <div class="date">25 de Enero</div>
+            <div class="message">Un alma tranquila con gusto refinado por el arte</div>
         </div>
+
+        <!-- Febrero -->
         <div class="card" data-date="02-24">
+            <div class="emoji">🎨</div>
             <h2>Layne</h2>
-            <p>24 de Febrero</p>
-            <span>🎨 Creativa y apasionada por el diseño 📐</span>
+            <div class="date">24 de Febrero</div>
+            <div class="message">Creativa y apasionada por el diseño perfecto</div>
         </div>
+
+        <!-- Marzo -->
+        <div class="card" data-date="03-01">
+            <div class="emoji">🚀</div>
+            <h2>Richard</h2>
+            <div class="date">1 de Marzo</div>
+            <div class="message">Siempre listo para nuevos desafíos y aventuras</div>
+        </div>
+        <div class="card" data-date="03-16">
+            <div class="emoji">💻</div>
+            <h2>Daniel</h2>
+            <div class="date">16 de Marzo</div>
+            <div class="message">El genio técnico que resuelve lo imposible</div>
+        </div>
+        <div class="card" data-date="03-26">
+            <div class="emoji">⚡</div>
+            <h2>Jhonathan</h2>
+            <div class="date">26 de Marzo</div>
+            <div class="message">Energía imparable y actitud positiva</div>
+        </div>
+
+        <!-- Abril -->
         <div class="card" data-date="04-25">
+            <div class="emoji">💡</div>
             <h2>Marco</h2>
-            <p>25 de Abril</p>
-            <span>🌟 Un líder con visión y carisma 💡</span>
+            <div class="date">25 de Abril</div>
+            <div class="message">Un líder estratégico con visión y carisma</div>
         </div>
-        <!-- ... añadir otras tarjetas aquí ... -->
+
+        <!-- Mayo -->
+        <div class="card" data-date="05-11">
+            <div class="emoji">🎯</div>
+            <h2>Javi</h2>
+            <div class="date">11 de Mayo</div>
+            <div class="message">Enfocado y preciso en cada proyecto</div>
+        </div>
+        <div class="card" data-date="05-22">
+            <div class="emoji">🧘</div>
+            <h2>Krisna</h2>
+            <div class="date">22 de Mayo</div>
+            <div class="message">Paz interior y sabiduría para el equipo</div>
+        </div>
+        <div class="card" data-date="05-22">
+            <div class="emoji">🔥</div>
+            <h2>Felipe</h2>
+            <div class="date">22 de Mayo</div>
+            <div class="message">La chispa creativa que enciende grandes ideas</div>
+        </div>
+
+        <!-- Junio -->
+        <div class="card" data-date="06-03">
+            <div class="emoji">☀️</div>
+            <h2>Julio</h2>
+            <div class="date">3 de Junio</div>
+            <div class="message">Ilumina cada reunión con su buen humor</div>
+        </div>
+        <div class="card" data-date="06-18">
+            <div class="emoji">🛡️</div>
+            <h2>Israel</h2>
+            <div class="date">18 de Junio</div>
+            <div class="message">Confiable y leal, siempre cuidando al equipo</div>
+        </div>
+        <div class="card" data-date="06-26">
+            <div class="emoji">🏆</div>
+            <h2>Salvador</h2>
+            <div class="date">26 de Junio</div>
+            <div class="message">Determinación y excelencia en todo lo que hace</div>
+        </div>
+
+        <!-- Agosto -->
+        <div class="card" data-date="08-25">
+            <div class="emoji">🌸</div>
+            <h2>Katty</h2>
+            <div class="date">25 de Agosto</div>
+            <div class="message">Dulzura y fortaleza en perfecta armonía</div>
+        </div>
+
+        <!-- Octubre -->
+        <div class="card" data-date="10-25">
+            <div class="emoji">🌙</div>
+            <h2>Diana</h2>
+            <div class="date">25 de Octubre</div>
+            <div class="message">Misteriosa y brillante como la luna</div>
+        </div>
+
+        <!-- Noviembre -->
+        <div class="card" data-date="11-19">
+            <div class="emoji">🎸</div>
+            <h2>Pedro</h2>
+            <div class="date">19 de Noviembre</div>
+            <div class="message">El rockstar que pone ritmo al trabajo</div>
+        </div>
+        <div class="card" data-date="11-27">
+            <div class="emoji">💎</div>
+            <h2>Alejandra</h2>
+            <div class="date">27 de Noviembre</div>
+            <div class="message">Valiosa y auténtica en cada momento</div>
+        </div>
+
+        <!-- Diciembre -->
+        <div class="card" data-date="12-23">
+            <div class="emoji">🎄</div>
+            <h2>Víctor</h2>
+            <div class="date">23 de Diciembre</div>
+            <div class="message">Trae la magia navideña todo el año</div>
+        </div>
     </div>
+
+    <audio id="happyBirthday" src="audio.mp3"></audio>
+
+    <footer>
+        Hecho con ❤️ para el mejor equipo
+    </footer>
 
     <script>
         const today = new Date();
         const todayStr = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        const cards = document.querySelectorAll('.card');
+        const audio = document.getElementById('happyBirthday');
+        
+        let closestCard = null;
+        let closestDiff = Infinity;
 
-        const birthdayCards = document.querySelectorAll('.card');
-        const todayContainer = document.getElementById('today-birthday');
-        const nextContainer = document.getElementById('next-birthday');
-
-        let closestDate = null;
-        let closestName = null;
-
-        birthdayCards.forEach(card => {
+        cards.forEach(card => {
             const date = card.dataset.date;
+            const name = card.querySelector('h2').textContent;
 
+            // Cumpleaños de hoy
             if (date === todayStr) {
-                todayContainer.style.display = 'block';
-                todayContainer.innerHTML = `🎂 Hoy es el cumpleaños de: <strong>${card.querySelector('h2').innerText}</strong> 🎉`;
-                card.classList.add('highlight');
+                card.classList.add('today');
+                card.innerHTML += '<div class="tag">¡HOY!</div>';
+                document.getElementById('today-badge').style.display = 'block';
+                document.getElementById('today-name').textContent = name;
+                audio.play().catch(() => {});
             }
 
-            const [month, day] = date.split('-');
-            const thisYear = new Date(today.getFullYear(), month - 1, day);
-
-            if (thisYear < today) {
-                thisYear.setFullYear(today.getFullYear() + 1);
+            // Calcular próximo cumpleaños
+            const [month, day] = date.split('-').map(Number);
+            let bday = new Date(today.getFullYear(), month - 1, day);
+            
+            if (bday <= today && date !== todayStr) {
+                bday.setFullYear(today.getFullYear() + 1);
             }
 
-            if (!closestDate || thisYear < closestDate) {
-                closestDate = thisYear;
-                closestName = card.querySelector('h2').innerText;
+            const diff = bday - today;
+            if (diff > 0 && diff < closestDiff) {
+                closestDiff = diff;
+                closestCard = card;
             }
         });
 
-        if (closestName && closestDate.toISOString().includes(todayStr) === false) {
-            nextContainer.style.display = 'block';
-            nextContainer.innerHTML = `🎈 El próximo cumpleaños es de: <strong>${closestName}</strong> 🎁`;
+        // Marcar próximo cumpleaños
+        if (closestCard) {
+            closestCard.classList.add('next');
+            closestCard.innerHTML += '<div class="tag">PRÓXIMO</div>';
+            document.getElementById('next-badge').style.display = 'block';
+            document.getElementById('next-name').textContent = closestCard.querySelector('h2').textContent;
         }
     </script>
 </body>
