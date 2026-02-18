@@ -3,36 +3,205 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Cumpleaños</title>
+    <title>Cumpleaños</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(to right, #ff758c, #ff7eb3);
-            color: #fff;
-            text-align: center;
+            background-color: #f5f5f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
             padding: 20px;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            position: relative;
         }
         h1 {
-            font-size: 3em;
-            margin-bottom: 0.5em;
+            color: #ffffff;
+            margin-bottom: 20px;
         }
-        ul {
-            list-style: none;
-            padding: 0;
+        .birthday {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #ffffff;
+            padding: 10px 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
         }
-        li {
-            background: rgba(0, 0, 0, 0.2);
-            margin: 0.5em 0;
-            padding: 0.8em;
-            border-radius: 8px;
-            font-size: 1.2em;
+        .birthday:hover {
+            transform: scale(1.05);
+        }
+        .next-birthday {
+            border: 2px solid #ffcc00;
+            background-color: #fff6e5;
+        }
+        .today-birthday {
+            animation: confetti 0.5s infinite;
+            background: url('https://www.transparenttextures.com/patterns/confetti.png') #ffecd2;
+            color: #d9534f;
+            font-weight: bold;
+            border: 2px solid #d9534f;
+            animation: glow 1s ease-in-out infinite alternate;
+        }
+        @keyframes glow {
+            from { box-shadow: 0 0 5px #d9534f; }
+            to { box-shadow: 0 0 20px #d9534f; }
+        }
+        .label {
+            position: absolute;
+            right: -110px;
+            width: 100px;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #ffcc00;
+            color: #333;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 0.8em; /* Tamaño de fuente reducido */
+        }
+        .label.today {
+            background-color: #d9534f;
+            color: #fff;
+        }
+        .name {
+            font-weight: bold;
+            color: #333;
+        }
+        .date {
+            color: #666;
         }
     </style>
 </head>
 <body>
-    <h1>Lista de Cumpleaños</h1>
-    <ul>
-        <li>25 de abril - Marco</li>
-    </ul>
+    <div class="container">
+        <h1>🎉 Cumpleaños 🎉</h1>
+        <!-- Cumpleaños existentes recuperados -->
+        <div class="birthday" data-birthday="01-21">
+            <span class="name">Estefanía</span>
+            <span class="date">21 de Enero</span>
+        </div>
+        <div class="birthday" data-birthday="01-25">
+            <span class="name">Alfred</span>
+            <span class="date">25 de Enero</span>
+        </div>
+        <div class="birthday" data-birthday="02-24">
+            <span class="name">Layne</span>
+            <span class="date">24 de Febrero</span>
+        </div>
+        <div class="birthday" data-birthday="03-01">
+            <span class="name">Richard</span>
+            <span class="date">1 de Marzo</span>
+        </div>
+        <div class="birthday" data-birthday="03-26">
+            <span class="name">Jhonathan</span>
+            <span class="date">26 de Marzo</span>
+        </div>
+        <div class="birthday" data-birthday="03-16">
+            <span class="name">Daniel</span>
+            <span class="date">16 de Marzo</span>
+        </div>
+        <div class="birthday" data-birthday="05-11">
+            <span class="name">Javi</span>
+            <span class="date">11 de Mayo</span>
+        </div>
+        <div class="birthday" data-birthday="05-22">
+            <span class="name">Krisna</span>
+            <span class="date">22 de Mayo</span>
+        </div>
+        <div class="birthday" data-birthday="05-22">
+            <span class="name">Felipe</span>
+            <span class="date">22 de Mayo</span>
+        </div>
+        <div class="birthday" data-birthday="06-03">
+            <span class="name">Julio</span>
+            <span class="date">3 de Junio</span>
+        </div>
+        <div class="birthday" data-birthday="06-18">
+            <span class="name">Israel</span>
+            <span class="date">18 de Junio</span>
+        </div>
+        <div class="birthday" data-birthday="06-26">
+            <span class="name">Salvador</span>
+            <span class="date">26 de Junio</span>
+        </div>
+        <div class="birthday" data-birthday="08-25">
+            <span class="name">Katty</span>
+            <span class="date">25 de Agosto</span>
+        </div>
+        <div class="birthday" data-birthday="10-25">
+            <span class="name">Diana</span>
+            <span class="date">25 de Octubre</span>
+        </div>
+        <div class="birthday" data-birthday="11-19">
+            <span class="name">Pedro</span>
+            <span class="date">19 de Noviembre</span>
+        </div>
+        <div class="birthday" data-birthday="11-27">
+            <span class="name">Alejandra</span>
+            <span class="date">27 de Noviembre</span>
+        </div>
+        <div class="birthday" data-birthday="12-23">
+            <span class="name">Víctor</span>
+            <span class="date">23 de Diciembre</span>
+        </div>
+        <!-- Nuevo cumpleaños añadido -->
+        <div class="birthday" data-birthday="04-25">
+            <span class="name">Marco</span>
+            <span class="date">25 de Abril</span>
+        </div>
+        <audio id="happyBirthday" src="audio.mp3"></audio>
+    </div>
+
+    <script>
+        const today = new Date();
+        const todayStr = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        const birthdays = document.querySelectorAll('.birthday');
+        const happyBirthdayAudio = document.getElementById('happyBirthday');
+
+        let closestDate = null;
+        let closestElement = null;
+
+        birthdays.forEach((element) => {
+            const birthday = element.getAttribute('data-birthday');
+            
+            if (birthday === todayStr) {
+                element.classList.add('today-birthday');
+                element.insertAdjacentHTML('beforeend', '<div class="label today">🎂 ¡Feliz Cumpleaños! 🎂</div>');
+                happyBirthdayAudio.play();
+            }
+
+            const [month, day] = birthday.split('-');
+            const birthdayDate = new Date(today.getFullYear(), month - 1, day);
+            
+            if (birthdayDate < today) {
+                birthdayDate.setFullYear(today.getFullYear() + 1);
+            }
+            
+            if (!closestDate || birthdayDate < closestDate) {
+                closestDate = birthdayDate;
+                closestElement = element;
+            }
+        });
+
+        if (closestElement && !closestElement.classList.contains('today-birthday')) {
+            closestElement.classList.add('next-birthday');
+            closestElement.insertAdjacentHTML('beforeend', '<div class="label">🎈 Próximo Cumpleaños 🎈</div>');
+        }
+    </script>
 </body>
 </html>
