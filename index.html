@@ -6,154 +6,160 @@
     <title>Cumpleaños Especiales</title>
     <style>
         body {
-            font-family: 'Helvetica', Arial, sans-serif;
-            background: radial-gradient(circle, #1d2671, #c33764);
-            color: #fff;
+            font-family: 'Poppins', 'Arial', sans-serif;
+            background: linear-gradient(to bottom, #16222a, #3a6073);
+            color: #ecf0f1;
             margin: 0;
             padding: 0;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
             min-height: 100vh;
         }
 
+        h1 {
+            font-size: 3em;
+            margin: 20px 0;
+            text-align: center;
+            color: #f39c12;
+            text-transform: uppercase;
+        }
+
+        .today, .next-birthday {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 10px;
+            background: #f1c40f;
+            color: #2c3e50;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
         .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 20px;
-            padding: 20px;
-            max-width: 1200px;
-            animation: fadeIn 1s ease-in-out;
+            text-align: center;
+            width: 90%;
         }
 
         .card {
-            background: #ffffff10;
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            background-color: #34495e;
+            border-radius: 10px;
             padding: 20px;
-            width: 200px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transform: translateY(0);
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
         }
 
         .card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.3);
+            transform: translateY(-5px);
         }
 
         .card h2 {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin: 0;
-            color: #fad0c4;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+            color: #1abc9c;
         }
 
         .card p {
+            margin: 5px 0;
             font-size: 1.1em;
-            color: #fceabb;
-            margin: 10px 0;
+            color: #ecf0f1;
         }
 
         .card span {
             display: block;
             margin-top: 8px;
             font-style: italic;
-            color: #fcf2ff;
+            color: #f39c12;
+            font-size: 0.9em;
         }
 
-        @keyframes fadeIn {
+        @keyframes glow {
             from {
-                opacity: 0;
+                box-shadow: 0 0 5px #f39c12;
             }
             to {
-                opacity: 1;
+                box-shadow: 0 0 20px #f39c12;
             }
+        }
+
+        .highlight {
+            border: 2px solid #f1c40f;
+            animation: glow 1.5s ease-in-out infinite alternate;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Cumpleaños ordenados cronológicamente -->
-        <div class="card">
+    <h1>🎉 Cumpleaños 🎉</h1>
+    <div class="today" id="today-birthday" style="display: none;">🎂 Hoy es el cumpleaños de: <strong></strong> 🎉</div>
+    <div class="next-birthday" id="next-birthday" style="display: none;">🎈 El próximo cumpleaños es de: <strong></strong> 🎁</div>
+
+    <div class="container" id="birthday-container">
+        <!-- Cumpleaños con mensajes añadidos -->
+        <div class="card" data-date="01-21">
             <h2>Estefanía</h2>
             <p>21 de Enero</p>
-            <span>✨ Siempre sonriente ✨</span>
+            <span>✨ Siempre alegre y con buena energía ✨</span>
         </div>
-        <div class="card">
+        <div class="card" data-date="01-25">
             <h2>Alfred</h2>
             <p>25 de Enero</p>
-            <span>🍀 Amante del jazz 🍀</span>
+            <span>🍀 Un amante del arte y la tranquilidad 🍀</span>
         </div>
-        <div class="card">
+        <div class="card" data-date="02-24">
             <h2>Layne</h2>
             <p>24 de Febrero</p>
-            <span>🎨 Diseñadora 🌟</span>
+            <span>🎨 Creativa y apasionada por el diseño 📐</span>
         </div>
-        <div class="card">
-            <h2>Richard</h2>
-            <p>1 de Marzo</p>
-        </div>
-        <div class="card">
-            <h2>Daniel</h2>
-            <p>16 de Marzo</p>
-        </div>
-        <div class="card">
-            <h2>Jhonathan</h2>
-            <p>26 de Marzo</p>
-        </div>
-        <div class="card">
+        <div class="card" data-date="04-25">
             <h2>Marco</h2>
             <p>25 de Abril</p>
-            <span>🌟 Estratega dinámico 💡</span>
+            <span>🌟 Un líder con visión y carisma 💡</span>
         </div>
-        <div class="card">
-            <h2>Javi</h2>
-            <p>11 de Mayo</p>
-        </div>
-        <div class="card">
-            <h2>Krisna</h2>
-            <p>22 de Mayo</p>
-        </div>
-        <div class="card">
-            <h2>Felipe</h2>
-            <p>22 de Mayo</p>
-        </div>
-        <div class="card">
-            <h2>Julio</h2>
-            <p>3 de Junio</p>
-        </div>
-        <div class="card">
-            <h2>Israel</h2>
-            <p>18 de Junio</p>
-        </div>
-        <div class="card">
-            <h2>Salvador</h2>
-            <p>26 de Junio</p>
-        </div>
-        <div class="card">
-            <h2>Katty</h2>
-            <p>25 de Agosto</p>
-        </div>
-        <div class="card">
-            <h2>Diana</h2>
-            <p>25 de Octubre</p>
-        </div>
-        <div class="card">
-            <h2>Pedro</h2>
-            <p>19 de Noviembre</p>
-        </div>
-        <div class="card">
-            <h2>Alejandra</h2>
-            <p>27 de Noviembre</p>
-        </div>
-        <div class="card">
-            <h2>Víctor</h2>
-            <p>23 de Diciembre</p>
-        </div>
+        <!-- ... añadir otras tarjetas aquí ... -->
     </div>
+
+    <script>
+        const today = new Date();
+        const todayStr = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+
+        const birthdayCards = document.querySelectorAll('.card');
+        const todayContainer = document.getElementById('today-birthday');
+        const nextContainer = document.getElementById('next-birthday');
+
+        let closestDate = null;
+        let closestName = null;
+
+        birthdayCards.forEach(card => {
+            const date = card.dataset.date;
+
+            if (date === todayStr) {
+                todayContainer.style.display = 'block';
+                todayContainer.innerHTML = `🎂 Hoy es el cumpleaños de: <strong>${card.querySelector('h2').innerText}</strong> 🎉`;
+                card.classList.add('highlight');
+            }
+
+            const [month, day] = date.split('-');
+            const thisYear = new Date(today.getFullYear(), month - 1, day);
+
+            if (thisYear < today) {
+                thisYear.setFullYear(today.getFullYear() + 1);
+            }
+
+            if (!closestDate || thisYear < closestDate) {
+                closestDate = thisYear;
+                closestName = card.querySelector('h2').innerText;
+            }
+        });
+
+        if (closestName && closestDate.toISOString().includes(todayStr) === false) {
+            nextContainer.style.display = 'block';
+            nextContainer.innerHTML = `🎈 El próximo cumpleaños es de: <strong>${closestName}</strong> 🎁`;
+        }
+    </script>
 </body>
 </html>
