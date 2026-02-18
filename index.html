@@ -3,205 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cumpleaños</title>
+    <title>Cumpleaños Especiales</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            max-width: 600px;
-            padding: 20px;
-            background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            position: relative;
-        }
-        h1 {
-            color: #ffffff;
-            margin-bottom: 20px;
-        }
-        .birthday {
-            position: relative;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background-color: #ffffff;
-            padding: 10px 20px;
-            margin: 10px 0;
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s;
-        }
-        .birthday:hover {
-            transform: scale(1.05);
-        }
-        .next-birthday {
-            border: 2px solid #ffcc00;
-            background-color: #fff6e5;
-        }
-        .today-birthday {
-            animation: confetti 0.5s infinite;
-            background: url('https://www.transparenttextures.com/patterns/confetti.png') #ffecd2;
-            color: #d9534f;
-            font-weight: bold;
-            border: 2px solid #d9534f;
-            animation: glow 1s ease-in-out infinite alternate;
-        }
-        @keyframes glow {
-            from { box-shadow: 0 0 5px #d9534f; }
-            to { box-shadow: 0 0 20px #d9534f; }
-        }
-        .label {
-            position: absolute;
-            right: -110px;
-            width: 100px;
-            top: 0;
-            bottom: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #ffcc00;
-            color: #333;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 0.8em; /* Tamaño de fuente reducido */
-        }
-        .label.today {
-            background-color: #d9534f;
+            font-family: 'Helvetica', Arial, sans-serif;
+            background: radial-gradient(circle, #1d2671, #c33764);
             color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-        .name {
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        .card {
+            background: #ffffff10;
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 200px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transform: translateY(0);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 10px 20px rgba(255, 255, 255, 0.3);
+        }
+
+        .card h2 {
+            font-size: 1.5em;
             font-weight: bold;
-            color: #333;
+            margin: 0;
+            color: #fad0c4;
         }
-        .date {
-            color: #666;
+
+        .card p {
+            font-size: 1.1em;
+            color: #fceabb;
+            margin: 10px 0;
+        }
+
+        .card span {
+            display: block;
+            margin-top: 8px;
+            font-style: italic;
+            color: #fcf2ff;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🎉 Cumpleaños 🎉</h1>
-        <!-- Cumpleaños existentes recuperados -->
-        <div class="birthday" data-birthday="01-21">
-            <span class="name">Estefanía</span>
-            <span class="date">21 de Enero</span>
+        <!-- Cumpleaños ordenados cronológicamente -->
+        <div class="card">
+            <h2>Estefanía</h2>
+            <p>21 de Enero</p>
+            <span>✨ Siempre sonriente ✨</span>
         </div>
-        <div class="birthday" data-birthday="01-25">
-            <span class="name">Alfred</span>
-            <span class="date">25 de Enero</span>
+        <div class="card">
+            <h2>Alfred</h2>
+            <p>25 de Enero</p>
+            <span>🍀 Amante del jazz 🍀</span>
         </div>
-        <div class="birthday" data-birthday="02-24">
-            <span class="name">Layne</span>
-            <span class="date">24 de Febrero</span>
+        <div class="card">
+            <h2>Layne</h2>
+            <p>24 de Febrero</p>
+            <span>🎨 Diseñadora 🌟</span>
         </div>
-        <div class="birthday" data-birthday="03-01">
-            <span class="name">Richard</span>
-            <span class="date">1 de Marzo</span>
+        <div class="card">
+            <h2>Richard</h2>
+            <p>1 de Marzo</p>
         </div>
-        <div class="birthday" data-birthday="03-26">
-            <span class="name">Jhonathan</span>
-            <span class="date">26 de Marzo</span>
+        <div class="card">
+            <h2>Daniel</h2>
+            <p>16 de Marzo</p>
         </div>
-        <div class="birthday" data-birthday="03-16">
-            <span class="name">Daniel</span>
-            <span class="date">16 de Marzo</span>
+        <div class="card">
+            <h2>Jhonathan</h2>
+            <p>26 de Marzo</p>
         </div>
-        <div class="birthday" data-birthday="05-11">
-            <span class="name">Javi</span>
-            <span class="date">11 de Mayo</span>
+        <div class="card">
+            <h2>Marco</h2>
+            <p>25 de Abril</p>
+            <span>🌟 Estratega dinámico 💡</span>
         </div>
-        <div class="birthday" data-birthday="05-22">
-            <span class="name">Krisna</span>
-            <span class="date">22 de Mayo</span>
+        <div class="card">
+            <h2>Javi</h2>
+            <p>11 de Mayo</p>
         </div>
-        <div class="birthday" data-birthday="05-22">
-            <span class="name">Felipe</span>
-            <span class="date">22 de Mayo</span>
+        <div class="card">
+            <h2>Krisna</h2>
+            <p>22 de Mayo</p>
         </div>
-        <div class="birthday" data-birthday="06-03">
-            <span class="name">Julio</span>
-            <span class="date">3 de Junio</span>
+        <div class="card">
+            <h2>Felipe</h2>
+            <p>22 de Mayo</p>
         </div>
-        <div class="birthday" data-birthday="06-18">
-            <span class="name">Israel</span>
-            <span class="date">18 de Junio</span>
+        <div class="card">
+            <h2>Julio</h2>
+            <p>3 de Junio</p>
         </div>
-        <div class="birthday" data-birthday="06-26">
-            <span class="name">Salvador</span>
-            <span class="date">26 de Junio</span>
+        <div class="card">
+            <h2>Israel</h2>
+            <p>18 de Junio</p>
         </div>
-        <div class="birthday" data-birthday="08-25">
-            <span class="name">Katty</span>
-            <span class="date">25 de Agosto</span>
+        <div class="card">
+            <h2>Salvador</h2>
+            <p>26 de Junio</p>
         </div>
-        <div class="birthday" data-birthday="10-25">
-            <span class="name">Diana</span>
-            <span class="date">25 de Octubre</span>
+        <div class="card">
+            <h2>Katty</h2>
+            <p>25 de Agosto</p>
         </div>
-        <div class="birthday" data-birthday="11-19">
-            <span class="name">Pedro</span>
-            <span class="date">19 de Noviembre</span>
+        <div class="card">
+            <h2>Diana</h2>
+            <p>25 de Octubre</p>
         </div>
-        <div class="birthday" data-birthday="11-27">
-            <span class="name">Alejandra</span>
-            <span class="date">27 de Noviembre</span>
+        <div class="card">
+            <h2>Pedro</h2>
+            <p>19 de Noviembre</p>
         </div>
-        <div class="birthday" data-birthday="12-23">
-            <span class="name">Víctor</span>
-            <span class="date">23 de Diciembre</span>
+        <div class="card">
+            <h2>Alejandra</h2>
+            <p>27 de Noviembre</p>
         </div>
-        <!-- Nuevo cumpleaños añadido -->
-        <div class="birthday" data-birthday="04-25">
-            <span class="name">Marco</span>
-            <span class="date">25 de Abril</span>
+        <div class="card">
+            <h2>Víctor</h2>
+            <p>23 de Diciembre</p>
         </div>
-        <audio id="happyBirthday" src="audio.mp3"></audio>
     </div>
-
-    <script>
-        const today = new Date();
-        const todayStr = `${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
-        const birthdays = document.querySelectorAll('.birthday');
-        const happyBirthdayAudio = document.getElementById('happyBirthday');
-
-        let closestDate = null;
-        let closestElement = null;
-
-        birthdays.forEach((element) => {
-            const birthday = element.getAttribute('data-birthday');
-            
-            if (birthday === todayStr) {
-                element.classList.add('today-birthday');
-                element.insertAdjacentHTML('beforeend', '<div class="label today">🎂 ¡Feliz Cumpleaños! 🎂</div>');
-                happyBirthdayAudio.play();
-            }
-
-            const [month, day] = birthday.split('-');
-            const birthdayDate = new Date(today.getFullYear(), month - 1, day);
-            
-            if (birthdayDate < today) {
-                birthdayDate.setFullYear(today.getFullYear() + 1);
-            }
-            
-            if (!closestDate || birthdayDate < closestDate) {
-                closestDate = birthdayDate;
-                closestElement = element;
-            }
-        });
-
-        if (closestElement && !closestElement.classList.contains('today-birthday')) {
-            closestElement.classList.add('next-birthday');
-            closestElement.insertAdjacentHTML('beforeend', '<div class="label">🎈 Próximo Cumpleaños 🎈</div>');
-        }
-    </script>
 </body>
 </html>
